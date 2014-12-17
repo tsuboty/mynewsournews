@@ -73,19 +73,6 @@
         </div>
 
 
-        <% if session[:account] || current_account %>
-        <!-- 閲覧履歴グラフ -->
-        <div class="hidden-xs hidden-sm hidden-md col-lg-2" style="margin-left:-40px;">
-          <p align="center">今月の閲覧記事数</p>
-          <svg id="chart" width="160px" height="160px"></svg>
-        </div>
-        <script>
-          setPie();
-        </script>
-        <% end %>
-
-
-
       </div><!-- row -->
 
   </div><!-- container -->
