@@ -1,0 +1,347 @@
+/* * This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets, * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the bottom of the
+* compiled file so the styles you add here take precedence over styles defined in any styles
+* defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+* file per style scope.
+*
+*= require_tree .
+
+*= require_self
+*= require 'bootstrap.min'
+
+*= require 'flat-ui'
+*= require 'metro-bootstrap.min'
+*= require 'metro-bootstrap-responsive.min'
+*= require 'animsition.min'
+*= require 'iconFont'
+*= require 'jquery-ui.min'
+*= require 'checks'
+
+
+*/
+/* ページ全体 */
+
+body {
+		background-color: white;
+		color: black;
+		padding: 0;
+		font-family: Meiryo, sans-serif;
+}
+/* リンク */
+
+a:link {
+		color: #00c;
+}
+a:visited {
+		color: #a08;
+}
+a:hover {
+		color: #ccf;
+}
+a img {
+		border: none;
+}
+/* 全体の枠 */
+/* 右サイドバー  */
+
+div#sidebar {
+		float: right;
+		padding-top: 50px;
+}
+/* コンテンツ */
+
+div#content {
+		vertical-align: top;
+		width: 100%;
+		padding: 0px;
+		border-color: red;
+		border-bottom-width: 2px;
+		border-bottom-color: red;
+}
+.kijicontent {
+		padding-top: 60px;
+		background-color: white;
+		border: 0px solid #fff;
+		border-radius: 10px;
+}
+.container {
+		width: 1040px;
+		margin: 0 auto;
+}
+.clearfix {
+		width: 1040px;
+}
+.ad {
+		margin-bottom: 10px;
+}
+#oowaku {
+		height: 500px;
+}
+.box {
+		margin-left: auto;
+		margin-right: auto;
+		position: absolute;
+}
+.front_tile {
+		position: relative;
+		margin-left: 100px;
+		margin-right: auto;
+		width: 270px;
+		height: 270px;
+		align: center;
+		font-size: 30px;
+		border-radius: 50%;
+		margin 0 auto;
+		display: inline-block;
+}
+.read_community {
+		background-image: url("/assets/community.jpg");
+}
+.front_tile:hover {
+		transform: translateY(-10px);
+		transition-duration: 1s;
+}
+.text_title {
+		position: relative;
+		top: 40%;
+		text-align: center;
+}
+/*ブラウザの横幅が690px以下のとき*/
+
+@media (max-width: 720px) {
+		/* Remove any padding from the body */
+
+		.kijicontent {
+				padding-top: 0;
+		}
+		.container {} .clearfix {}
+}
+p.title {
+		line-height: 40px;
+		font-size: 30px;
+		text-align: center;
+}
+/* footer */
+
+div#footer {
+		clear: both;
+		background-color: #eee;
+		padding: 5px;
+		width: 100%;
+		text-align: center;
+}
+.row {}
+/* twitter form */
+
+.tweet,
+#ADVERTISE_RECTANGLE2 img {
+		width: 100%;
+		margin: 0 auto;
+}
+.twitter-timeline {
+		width: 100%;
+		margin: 0 auto;
+}
+.twitter {
+		text-align: center;
+}
+/* sign in form */
+
+.form-signin {
+		max-width: 330px;
+		padding: 15px;
+		margin: 0 auto;
+		padding-top: 5px;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+		margin-bottom: 10px;
+}
+.form-signin .checkbox {
+		font-weight: normal;
+}
+.form-signin .form-control {
+		position: relative;
+		font-size: 16px;
+		height: auto;
+		padding: 10px;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+}
+.form-signin .form-control:focus {
+		z-index: 2;
+}
+.form-signin input[type="password"] {
+		margin-bottom: 10px;
+}
+.account-wall {
+		margin-top: 20px;
+		padding: 40px 0px 20px 0px;
+		background-color: #f7f7f7;
+		-moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+		-webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+		box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+.login-title {
+		color: #555;
+		font-size: 18px;
+		font-weight: 400;
+		display: block;
+}
+.profile-img {
+		width: 96px;
+		height: 96px;
+		margin: 0 auto 10px;
+		display: block;
+		-moz-border-radius: 50%;
+		-webkit-border-radius: 50%;
+		border-radius: 50%;
+}
+.profile-name {
+		font-size: 16px;
+		font-weight: bold;
+		text-align: center;
+		margin: 10px 0 0;
+		height: 1em;
+}
+.profile-email {
+		display: block;
+		padding: 0 8px;
+		font-size: 15px;
+		color: #404040;
+		line-height: 2;
+		font-size: 14px;
+		text-align: center;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+}
+.need-help {
+		display: block;
+		margin-top: 10px;
+}
+.new-account {
+		display: block;
+		margin-top: 10px;
+}
+.pieNum {
+		font-size: 12px;
+		text-anchor: middle;
+}
+/* 吹き出し用 */
+
+.arrow_box {
+		position: relative;
+		display: inline-block;
+		padding: 0 15px;
+		width: auto;
+		min-width: 115px;
+		height: 40px;
+		color: #F6F6F6;
+		line-height: 40px;
+		text-align: center;
+		background: #19283C;
+		z-index: 0;
+		margin: 5px 0px 10px 10px;
+}
+.arrow_box:after {
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: -10px;
+		margin-top: -10px;
+		display: block;
+		width: 0px;
+		height: 0px;
+		border-style: solid;
+		border-width: 10px 10px 10px 0;
+		border-color: transparent #19283C transparent transparent;
+}
+.tri {
+		position: absolute;
+		top: 15px;
+		left: 0px;
+		width: 10px;
+		height: 0;
+		border: 10px solid transparent;
+		border-right: 10px solid #7DB9DE;
+}
+.tri-self {
+		position: absolute;
+		top: 15px;
+		left: 0px;
+		width: 10px;
+		height: 0;
+		border: 10px solid transparent;
+		border-right: 10px solid #48c9b0;
+}
+.comment-box {
+		position: absolute;
+		top: 0;
+		left: 20px;
+		width: 500px;
+		background-color: #7DB9DE;
+		color: white;
+		padding: 0px 10px 20px 10px;
+		margin-bottom: 20px;
+		border-radius: 10px;
+		/* CSS3草案 */
+
+		-webkit-border-radius: 10px;
+		/* Safari,Google Chrome用 */
+
+		-moz-border-radius: 10px;
+		/* Firefox用 */
+
+		border: 0;
+}
+.comment-box-self {
+		position: absolute;
+		top: 0;
+		left: 20px;
+		width: 500px;
+		background-color: #48c9b0;
+		color: white;
+		padding: 0px 10px 20px 10px;
+		border: 0;
+		margin-bottom: 20px;
+		border-radius: 10px;
+		/* CSS3草案 */
+
+		-webkit-border-radius: 10px;
+		/* Safari,Google Chrome用 */
+
+		-moz-border-radius: 10px;
+		/* Firefox用 */
+}
+.comment-time-box {
+		position: absolute;
+		bottom: -50px;
+		color: white;
+		padding: 10px 10px 10px 10px;
+		margin-bottom: 20px;
+		font-size: 8px
+}
+.btn-w {
+		width: 100px;
+		margin-left: 10px;
+}
+.name-box {
+		position: absolute;
+		top: 50px;
+		left: -20px;
+		font-size: 8px;
+		width: 90px;
+		text-align: center;
+}
+.paging {
+		text-align: center;
+}

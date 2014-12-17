@@ -1,0 +1,72 @@
+{
+   "id": 1528352858,ユーザーID(数値型)$object->id
+   "id_str": "1528352858",ユーザーID(文字型)$object->id_str
+   "name": "あらゆ",ユーザーネーム$object->name
+   "screen_name": "arayutw",スクリーンネーム$object->screen_name
+   "location": "Japan",居住地$object->location
+   "description": "webサービスの作成が趣味です。\nGoogle+で、足立区コミュニティを開設しました→https://t.co/mnr1wYeFkU",プロフィール説明文$object->description
+   "url": "http://t.co/ScEV7Be96V",webサイト$object->url
+   "entities": {エンティティデータ
+      "url": {プロフィールの「webサイト」に含まれるURL情報
+         "urls": [
+            {
+               "url": "http://t.co/ScEV7Be96V",短縮URL$object->entities>url>urls>url
+               "expanded_url": "http://syncer.jp",実態URL$object->entities>url>urls>expanded_url
+               "display_url": "syncer.jp",ラベル$object->entities>url>urls>display_url
+               "indices": [オフセット情報
+                  0,URLが含まれる最初の場所$object->entities>url>urls>indices[0]
+                  22URLが含まれる最後の場所$object->entities>url>urls>indices[1]
+               ]
+            }
+         ]
+      },
+      "description": {プロフィールの「説明文」に含まれるURL情報
+         "urls": [
+            {
+               "url": "https://t.co/mnr1wYeFkU",短縮URL
+               "expanded_url": "https://plus.google.com/communities/111258687743643122329",実態URL
+               "display_url": "plus.google.com/communities/11…",ラベル
+               "indices": [オフセット情報
+                  43,URLが含まれる最初の場所(何文字目か)
+                  66URLが含まれる最後の場所(何文字目か)
+               ]
+            }
+         ]
+      }
+   },
+   "protected": false,つぶやきが非公開か？$object->protected
+   "followers_count": 499,フォロワー数$object->followers_count
+   "friends_count": 321,フォロー数$object->friends_count
+   "listed_count": 17,リストに入ってる数$object->listed_count
+   "created_at": "Tue Jun 18 17:28:51 +0000 2013",アカウント作成日
+   "favourites_count": 1096,お気に入りの数$object->favourites_count
+   "utc_offset": 32400,UTCとの時差(秒)$object->utc_offset
+   "time_zone": "Irkutsk",タイムゾーン$object->time_zone
+   "geo_enabled": true,ツイートに位置情報を追加する設定か？$object->geo_enabled
+   "verified": false,本人認証済みか？$object->verified
+   "statuses_count": 4004,つぶやき数
+   "lang": "ja",言語$object->lang
+   "status": {最後のつぶやき(つぶやきオブジェクト)
+      ...
+   },
+   "contributors_enabled": false,ライター(複数人による投稿)機能を利用しているか？$object->contributors_enabled
+   "is_translator": false,翻訳ボランティアに参加しているか？$object->is_translator
+   "is_translation_enabled": false,
+   "profile_background_color": "B2DFDA",プロフィールの背景色$object->profile_background_color
+   "profile_background_image_url": "http://abs.twimg.com/images/themes/theme13/bg.gif",プロフィールの背景画像URL$object->profile_background_image_url
+   "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme13/bg.gif",プロフィールの背景画像URL(https版)$object->profile_background_image_url_https
+   "profile_background_tile": false,背景をタイル(繰り返し)設定にしているか？$object->profile_background_tile
+   "profile_image_url": "http://pbs.twimg.com/profile_images/439701751487152128/d-zz5HX6_normal.jpeg",プロフィール画像URL$object->profile_image_url
+   "profile_image_url_https": "https://pbs.twimg.com/profile_images/439701751487152128/d-zz5HX6_normal.jpeg",プロフィール画像URL(https版)$object->profile_image_url_https
+   "profile_banner_url": "https://pbs.twimg.com/profile_banners/1528352858/1371754808",プロフィールバナー画像URL$object->profile_banner_url
+   "profile_link_color": "93A644",プロフィールのリンク色$object->profile_link_color
+   "profile_sidebar_border_color": "EEEEEE",サイドバーのボーダー色$object->profile_sidebar_border_color
+   "profile_sidebar_fill_color": "FFFFFF",「重ねて表示」の色$object->profile_sidebar_fill_color
+   "profile_text_color": "333333",プロフィールの文字色$object->profile_text_color
+   "profile_use_background_image": true,プロフィールの背景画像を利用しているか？$object->profile_use_background_image
+   "default_profile": false,プロフィールページのデザインテーマはデフォルトか？$object->default_profile
+   "default_profile_image": false,プロフィール画像はデフォルトか？$object->default_profile_image
+   "following": false,アクセストークンの主が、このユーザーをフォローしているか？$object->following
+   "follow_request_sent": false,アクセストークンの主が、このユーザーにフォローリクエストを送っているか？$object->follow_request_sent
+   "notifications": false,アクセストークンの主が、このユーザーのツイートを通知設定しているか？$object->notifications
+   "suspended": false,アカウントが凍結中か？$object->suspended

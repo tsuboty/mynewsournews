@@ -1,0 +1,8 @@
+<% if current_account %>
+	
+	<%= link_to "Sign Out", signout_path %>
+
+<% else %>
+	<%= link_to "Sign in", "/auth/salesforce" %>
+<% end %>
+

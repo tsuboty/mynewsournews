@@ -1,0 +1,48 @@
+
+<!-- ログイン -->
+<div align="center">
+	<br>
+	<%= render "layouts/login_form" %>
+</div>
+<br>
+
+
+
+<!-- twitter一覧 -->
+<div class="tweet">
+	<a class="twitter-timeline" href="https://twitter.com/nikkei" data-widget-id="499811084581105666">@nikkei からのツイート</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</div>
+
+
+
+<!-- 広告 -->
+<div id="ADVERTISE_RECTANGLE2">
+	<div>
+		<script type="text/javascript">
+			<!-- nkadtool.writeAD('AAMBRECT2'); //-->
+		</script>
+
+		<a href="http://adpriv.nikkei.com/ADCLICK/CID=0000f79bd04937f200000000/SITE=BIZALL/AREA=RECT2/AAMSZ=300X250/OENCJP=UTF8/acc_random=1408226853/pageid=847247391" target="_blank">
+
+		<img src="http://adb.nikkei.co.jp/ad/logo/2014b/140701ShoppingTravel-woodlore-Rect.jpg" alt="" border="0">
+		</a>
+	</div>
+</div>
+
+
+
+<h4>最新ニュース</h4>
+<ul>
+	<% 5.times do |i| %>
+	<li><%= link_to "ニュース見出し" ,"#" %></li>
+	<% end %>
+</ul>
+
+
+<h4>会員のブログ</h4>
+<ul>
+	<% 5.times do |i| %>
+	<li><%= link_to "ブログの見出し","#" %></li>
+	<% end %>
+</ul>

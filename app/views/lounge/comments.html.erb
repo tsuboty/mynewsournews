@@ -1,0 +1,111 @@
+<div class="container">
+	<ol class="breadcrumb">
+		  <li><a href="/">Home</a></li>
+		  <li><a href="/lounge">コミュニティ</a></li>
+		  <li><a href="/lounge/<%= @community.id %>"><%= @community.body %></a></li>	  
+	  	  <li><a href="/lounge/<%= @community.id %>/<%= @article.id %>"><%= @article.id %></a></li>	  
+	
+	</ol>
+	<a href="<%= @article.link %>">
+	<h4><%= @article.headline %></h4>
+	</a>
+
+	<table class="table-hover">
+		<thead>
+			<tr>
+				<th></th>
+			</tr>
+		</thead>
+
+		<tbody>
+
+		<!-- コメント一覧  -->
+		<% @comments.each do |comment| %>
+			<tr>
+				<td>
+					<div style="position: relative">
+					<!-- ユーザ画像 -->
+					<% unless comment.account.nil? || comment.account.image.nil? %>
+						<%= image_tag comment.account.image,class: "img-circle", style: "float:left;margin-bottom:20px;height:50px;width:50px;" %>
+						
+					<% else %>
+						<%= image_tag "/assets/anonymous.png",class: "img-circle", style: "float:left;margin-bottom:20px;" %>
+					<% end %>
+						<!-- ユーザ名 -->
+						<div class="name-box"> <%= comment.account.Name unless comment.account.nil? %></div>
+					</div>
+
+					<!-- ユーザコメント -->
+					<a href="/lounge/<%= @community.id %>/<%= @article.id %>/<%= comment.id %>/edit">
+						
+						
+						<div  style="float:left;">
+							<div style="position: relative;">
+
+								<!-- 自分かどうかの判定 -->
+								<% unless comment.account.nil? %>
+									<% if comment.account.id == session[:account_id]%>
+										<% @talk = "comment-box-self"; @tri="tri-self"%>
+									<% else %>
+										<% @talk = "comment-box"; @tri="tri" %>
+									<% end %>
+								<% else %>
+									<% @talk = "comment-box" ; @tri="tri"%>
+								<% end %>
+								
+								<!-- 三角形 -->
+								<div class=<%= @tri %> ></div>
+
+								<!-- コメント文字 -->
+								<div class=<%= @talk %>>
+									<div style="position: relative;">
+								            <%= comment.body %>
+								            <!-- 時刻 -->
+										<div class="comment-time-box">
+											<%= comment.updated_at.strftime("%Y/%m/%d %H:%M") %>
+										</div>
+
+								    </div>
+								</div>								
+							</div>
+							
+						</div>
+					</a>	  
+				</td>
+			</tr>
+		<% end %>
+		
+		</tbody>
+	</table>
+
+	<div>
+		
+		<form action="/lounge/<%= @community.id %>/<%= @article.id %>" method="POST" role="form">
+					
+			<div class="form-group">
+				<label for="label">コメントする</label>
+				<input type="text" class="form-control" name="comment" placeholder="コメントを入力">
+			</div>
+		
+			
+		
+			<button type="submit" class="btn btn-primary btn-xs btn-w" style="float:right;">コメント追加</button>
+		</form>
+
+	</div>
+
+	<div align="right" style="margin-bottom:30px;">
+		
+
+
+		<button type="button" class="btn btn-info btn-xs btn-w" onclick="location.href='/lounge/<%= @community.id %>'"value="戻る">戻る</button>
+
+
+	</div>
+
+</div>
+	
+		
+			
+		
+	

@@ -1,0 +1,30 @@
+<div class="container">
+
+<form action="/lounge/<%= @community.id %>/<%= @article.id %>/<%= @comment.id %>/update" method="POST" role="form">
+
+	<legend>コメントの編集</legend>
+
+	<div class="form-group">
+		<label for="">コメント</label>
+		<input type="text" class="form-control" name="comment" placeholder="Input field" value="<%= @comment.body %>">
+
+	</div>
+	
+
+	
+	
+
+	<button type="submit" class="btn btn-primary btn-xs btn-w" style="float:right">更新</button>
+
+</form>
+	<% 
+	dpath = "/lounge/" + 
+			@community.id.to_s+"/"+
+			@article.id.to_s+"/" +
+			@comment.id.to_s + "/delete"
+	%>
+
+	<div style="float:right;margin-bottom:25px;">
+		<%= button_to "削除", dpath, method: "delete", class: "btn btn-danger btn-xs btn-w" %>
+	</div>
+</div>

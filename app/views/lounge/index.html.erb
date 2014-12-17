@@ -1,0 +1,92 @@
+<% if current_account %>
+<% community_num = @community.count%>
+<div class="metro" >
+	<div class="container">
+		<div>　</div>
+		<ol class="breadcrumb">
+		  <li><a href="/">Home</a></li>
+		  <li><a href="/lounge">コミュニティ</a></li>
+		  
+		</ol>
+		<div>　</div>
+		<div class="row">
+			
+			<%
+				case @community.count
+				when 0..3
+					col_size = 4
+				when 4
+					col_size = 3
+				when 5..6
+					col_size = 2
+				when 7..12
+					col_size = 1
+				end
+			%>
+
+			<div class="col-xs-<%=col_size%> col-sm-<%=col_size%> col-md-<%=col_size%> col-lg-<%=col_size%>">
+				
+					<%= render partial: "lounge/loungetile",
+								locals: 
+									{badge: @community[0].articles.count,
+									 title: @community[0].body,
+									 color: "bg-lime",
+									 icon: "icon-user-3",
+									 link: "/#{@community[0].id}",
+									 classSet: "tile"} 
+					%>
+				
+			</div>
+
+			<div class="col-xs-<%=col_size%> col-sm-<%=col_size%> col-md-<%=col_size%> col-lg-<%=col_size%>">
+				<%= render partial: "lounge/loungetile",
+						   locals: {
+						   	badge: @community[1].articles.count,
+						   	title: @community[1].body,
+						   	color: "bg-lightBlue",
+						   	icon: "icon-facebook",
+						   	link: "/#{@community[1].id}",
+						   	classSet: "tile_double_vertical"} 
+				%>
+			</div>
+
+			<div class="col-xs-<%=col_size%> col-sm-<%=col_size%> col-md-<%=col_size%> col-lg-<%=col_size%>">
+				<%= render partial: "lounge/loungetile",
+						   locals: {
+						   	badge: 3,
+						   	title: @community[2].body,
+						   	color: "bg-lightBlue",
+						   	icon: "icon-comments-2",
+						   	link: "/3",
+						   	classSet: "tile_double_vertical"} %>
+			</div>
+
+			
+
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<div style="float:right; margin:30px 0 30px 0;">
+					<button onclick="location.href='/lounge/show'">コミュニティ編集</button>
+					
+
+				</div>
+
+			</div>
+
+
+
+		</div>
+	</div>
+</div>
+
+<% elsif %>
+<p>
+会員専用のサイトです。
+ログインするか、会員登録を行ってください。
+</p>
+<p>
+<center>
+<%= link_to image_tag("facebook_login.png"),"/auth/facebook" %>
+</center>
+</p>
+
+<% end %>

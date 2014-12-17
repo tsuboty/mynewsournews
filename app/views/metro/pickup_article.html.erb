@@ -1,0 +1,249 @@
+<div ng-init="articles= <%=@pickup_article.to_json %>"></div>
+
+<div class="container animsition">
+
+	<ol class="breadcrumb">
+		  <li><a href="/">Home</a></li>
+		  <li><a href="/metro/pickup_article/<%= @category %>"><%= @category %></a></li>
+
+	</ol>
+
+
+<h4><%= @category %></h4>
+		<a href=javascript:history.back()>
+		<button class="btn" style="float:right; margin-right: 50px;">戻る</button>
+		</a>
+
+		<!-- 検索キーワード -->
+		<form class="navbar-form navbar-right" ng-submit="search.searchArticle()">
+			<input class="form-control" type="text" ng-model="searchWord">
+		</form>
+
+		<!-- 検索日時 -->
+		<form class="navbar-form navbar-right">
+			<input class="form-control" type="date"  ng-model="searchDate">
+		</form>
+
+		<h4 ng-cloak> {{ searchWord }} </h4>
+
+		<table class="table table-hover table-condensed">
+			<thead>
+				<tr>
+					<th>No</th>
+					<th>カテゴリ</th>
+					<th class="twitter_icon">ヘッドライン</th>
+					<th>日付</th>
+					<th>clip</th>
+					<% if current_account %><th></th> <% end %>
+					<th>tweet</th>
+					<th>RT</th>
+
+				</tr>
+			</thead>
+
+			<tbody>
+
+				<% @pickup_article.each do |a| %>
+					<tr id="<%=a.id%>" >
+						<td class="id"><%= a.id %></td>
+						<td class="category"><%= a.category %></td>
+
+						<!-- ヘッドライン -->
+						<td class="headline" data-link="<%= a.link %>">
+							<a href="" ><%= a.headline %></a>
+						</td>
+
+						<td class="caputureDate"><%= a.capturedDate %></td>
+
+						<!-- 記事クリップ -->
+						<td class="clip"><div class="clip"><img src="/assets/clip.png"></div></td>
+
+						<!-- お気に入り -->
+						<% if current_account %>
+							<td >
+								<% if @favorite_ids.include?(a.id) %>
+									<!-- お気に入り済 -->
+									<button class="icon-star-3 btn btn-xs fv"></button>
+
+								<% else %>
+									<!-- お気に入り未 -->
+									<button class="icon-star btn btn-xs fv"></button>
+								<% end %>
+
+							</td>
+
+						<% end %>
+
+						<td class="twitter"><%= link_to image_tag("twitter.png"),twitter_path(a.id) %></td>
+
+						<td class="rt">
+							<% case a.retweet_num.to_i when 100%>
+								<div class="badge alert-danger">100</div>
+							<% when 60..99 %>
+								<div class="badge alert-info"><%= a.retweet_num %></div>
+							<% when 20..59 %>
+								<div class="badge alert-success"><%= a.retweet_num %></div>
+							<% when 1..19 %>
+								<div class="badge alert-warning"><%= a.retweet_num %></div>
+							<% when 0 %>
+								<div class="badge"><%= a.retweet_num %></div>
+							<% end %>
+						</td>
+					</tr>
+
+					<!-- 記事プレビュー -->
+					<tr id="content-<%= a.id %>" style="display:none;" >
+						<td colspan='7'>
+							<% if a.content %>
+							<%= a.content.html_safe %>
+							<% end %>
+						</td>
+					</tr>
+
+				<% end %>
+
+				</tbody>
+		</table>
+
+		<div class="paging">
+			<%= paginate @pickup_article  %>
+		</div>
+
+</div>
+
+<!-- 記事クリップ Small modal -->
+<div id="modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<p class="modal-title">コミュニティの選択</p>
+		</div>
+
+		<form action="/metro/clip_topic" method="POST" role="form" id="clip-form">
+			<div class="modal-body">
+				<% @community.each do |com|  %>
+				<div class="input-group">
+
+					<input type="radio" value="<%= com.id %>" id="com_<%= com.id %>" name="community_id">
+					<label for="com_<%= com.id %>"><%= com.body %></label>
+				</div>
+				<% end %>
+
+				<!-- ここにidを入れる -->
+				<input type="hidden" name="article_id" id="article_id">
+
+				<div class="modal-footer">
+					<button class="btn btn-default btn-xs btn-w" data-dismiss="modal" id="close-btn">
+						Close
+					</button>
+
+					<button type="submit" class="btn btn-primary btn-xs btn-w" id="clip_btn">
+						Clip
+					</button>
+				</div>
+
+			</div>
+		</form>
+
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+	//jQuery
+	$(function(){
+		//onload
+
+		//クリップがクリックされたとき
+		$(".clip").click(function(){
+			$('#modal').modal("show");
+			$('#article_id').val( $(this).closest('tr').attr("id") );
+		});
+
+		//クリップでコミュニティをサブミットしたとき
+		$('#clip-form').submit(function(event) {
+		    // HTMLでの送信をキャンセル
+		    event.preventDefault();
+
+		    // 操作対象のフォーム要素を取得
+		    var $form = $(this);
+
+		    //ajax送信
+		    $.ajax({
+			   type: "POST",
+			   url:  $form.attr('action') ,
+			   data: $form.serialize(),
+			   success: function(msg){
+			   	 $('#close-btn').trigger("click");
+		//	     alert( "Data Saved: " + msg );
+			   }
+			 });
+		});
+
+		//記事がクリックされたとき
+
+		<!-- 記事プレビュー -->
+		var con_id_flg = {};
+
+		$(".headline").click(function(){
+			var id = $(this).closest('tr').attr("id");
+			var con_id = "#content-" + id;
+			if(con_id_flg[id] == null || con_id_flg[id] == false){
+				con_id_flg[id] = true;
+			}else{
+				con_id_flg[id] = false;
+			}
+			console.log(con_id_flg[id]);
+			//$(con_id).slideToggle("slow");
+			$(con_id).animate(
+			    {width: "toggle", opacity: "toggle" },
+			    "fast",
+					"easeInQuart"
+			);
+
+
+			var userid = ""
+			<% if current_account %>
+				userid = <%= current_account.id %>;
+			<% end %>
+
+			//アクセスログの送信(開いたとき)
+			if(con_id_flg[id]){
+				$.ajax({
+				   type: "POST",
+				   url:  "/record" ,
+				   data:  "article_id="+id+"&account_id="+userid,
+				   success: function(msg){
+				   }
+				});
+			}
+
+		});
+
+		//お気に入りを押したとき
+		$(".fv").click(function(){
+			var id = $(this).closest('tr').attr("id");
+//			alert("<%= session[:account_id] %>")
+
+			<% if current_account %>
+				userid = <%= current_account.id %>;
+			<% end %>
+
+			$("#"+id+" .fv").toggleClass("icon-star-3");
+			$("#"+id+" .fv").toggleClass("icon-star");
+
+			$.ajax({
+				type: "POST",
+			    url:  "/favorite" ,
+			    data:  "article_id="+id
+			});
+
+		});
+
+	});
+
+</script>

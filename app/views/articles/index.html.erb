@@ -1,0 +1,97 @@
+<div class="container">
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		  <div style="float:left;"><h3>記事管理<small> article list</small></h3></div>
+		  <div style="float:right; "><a href="/articlescrawl">
+		  	<button type="button" class="btn btn-success btn-xs btn-w">crawl</button></a>
+		  </div>
+		  
+		  <div style="float:right; margin-right:30px;">
+		  	<a href="/send_to_salesforce">
+		  		<button type="button" class="btn btn-info btn-xs btn-w">データを送る</button>
+		  	</a>
+		  </div>
+		  
+		  <div style="float:right; margin-right:30px;">
+		  	<a href="/favorite">
+		  		<button type="button" class="btn btn-info btn-xs btn-w">人気順</button>
+		  	</a>
+		  </div>
+
+		  <div style="float:right; margin-right:30px;">
+		  	<a href="/rt_search">
+		  		<button type="button" class="btn btn-info btn-xs btn-w">RT</button>
+		  	</a>
+		  </div>
+		
+		<% if session[:token] %>
+		  <div style="float:right; margin-right:30px;"><a href="/reset"><button type="button" class="btn btn-danger">reset</button></a></div>
+		<% end %>
+	
+		<table class="table table-hover .table-condensed">
+			<thead>
+				<tr>
+					<th>No</th>
+					<th>カテゴリ</th>
+					<th class="twitter_icon">ヘッドライン</th>
+					<th>日付</th>
+					<th>tweet</th>
+					<th>clip</th>
+					<th>RT</th>
+					<th>送信</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @articles.each do |a| %>
+					<tr>
+						<td class="id"><%= a.id %></td>
+						<td class="category"><%= a.category %></td>
+						<td class="headline"><a href="<%=a.link %>" target="_blank"><%= a.headline %></a></td>
+						<td class="caputureDate"><%= a.capturedDate %></td>
+						<td class="twitter"><%= link_to image_tag("twitter.png"),twitter_path(a.id) %></td>
+						<td><%= image_tag("clip.png") %></td>
+						<td class="rt">
+							<% case a.retweet_num.to_i when 100 %>
+								<div class="badge alert-danger">100</div>
+							<% when 60..99 %>
+								<div class="badge alert-info"><%= a.retweet_num %></div>
+							<% when 20..59 %>
+								<div class="badge alert-success"><%= a.retweet_num %></div>
+							<% when 1..19 %>
+								<div class="badge alert-warning"><%= a.retweet_num %></div>
+							<% when 0 %>
+								<div class="badge"><%= a.retweet_num %></div>
+							<% end %>	
+						</td>
+						<td><%= a.send_article_flg %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<script>
+	var token = "<%= session[:token] %>"
+
+	$(".headline").click(function(obj){
+		var data = {
+			"Title" : $(this).text(),
+          	"JournalURL" : $(this).children().attr("href"),
+          	"Honbun" : "",
+          	"IssueDate" : $(this).next().text(),
+          	"nikeiID" : ""		
+		}
+		postData(data);
+	})
+
+
+	function postData(post_data){
+        $.ajax({
+          type: "POST",
+          url: "/send_read_info",
+          data: post_data,
+          success: function(data, dataType){
+          }
+        });
+    }
+</script>

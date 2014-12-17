@@ -1,0 +1,23 @@
+/* チェックボックスの表示 
+
+*/
+.check-box{
+	width:20px;
+	height: 20px;
+	
+
+	background: url("/assets/unchecked.png") no-repeat;
+}
+
+.check-box:hover {
+	background: url("/assets/checked.png") no-repeat;
+
+}
+
+.checked-box {
+	width:20px;
+	height: 20px;
+	
+	background: url("/assets/checked.png") no-repeat;
+
+}

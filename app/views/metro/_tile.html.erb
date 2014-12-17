@@ -1,0 +1,29 @@
+<% case category 
+	 when "FAVORITE" %><% @link="/metro/favorite" %>
+	<% when "分析" %><% @link="/metro/analysis" %>
+	
+	<% else %><% @link="/metro/pickup_article/"+category+ "?page=1" %>
+<% end %>
+
+<%= link_to @link,method: :post do %>
+	<% if classSet=="tile" %>
+		<div class= <%= classSet %> >  
+	<% elsif classSet=="tile_double" %>
+		<div class= "tile double" >
+	<% elsif classSet=="tile_double_vertical"%>
+		<div class= "tile double double-vertical" >
+	<% end %>
+	
+			<div class="tile-content <%= color %> icon" >
+				<i class=<%= icon %>   ></i>
+				<!-- バッチの数字 -->
+				<div class="badge alert-warning">		
+					<%= badge %>		
+				</div>				
+			</div>	
+			<div class="brand bg-dark opacity">
+				<span class="text"><%= title %></span>
+			</div>	
+		</div>
+<% end %>
+

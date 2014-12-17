@@ -1,0 +1,67 @@
+
+
+<div class="container">
+	<div class="row">
+
+		<ol class="breadcrumb">
+		  <li><a href="/">Home</a></li>
+		  <li><a href="/metro/favorite/ %>">favorite</a></li>
+		  
+		</ol>
+	
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>chk</th>
+				<th>headline</th>
+			</tr>
+		</thead>
+
+
+		<tbody>
+			<form>
+			<% @articles.each do |a| %>
+			
+				<tr>
+					<td>
+						<div id="<%= a.id %>" class="check-box"></div>
+					</td>
+					<td class="headline" data-id="<%= a.id %>">
+						<%=a.headline %>
+					</td>
+				</tr>
+				<tr id="con-<%= a.id %>" class="contents" style="display:none;">
+					<td colspan='2'>
+					 <%= a.content.html_safe %>
+					</td>
+				</tr>
+			<% end %>
+			</form>
+		</tbody>
+	</table>
+
+	</div>
+</div>
+
+<script>
+	$(".check-box").click(function(){
+		$(this).toggleClass("check-box");
+		$(this).toggleClass("checked-box");
+		var id = $(this).attr("id");
+
+
+		//ajax送信
+	    $.ajax({
+		   type: "POST",
+		   url:  "/metro/check/"+id
+		 });
+	});
+
+	$(".headline").click(function(){
+		var id = "con-" + $(this).data("id");
+		
+		$("#"+id).toggle();
+
+	});
+
+</script>

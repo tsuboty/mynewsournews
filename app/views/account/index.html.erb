@@ -1,0 +1,24 @@
+ <p><%= link_to "会員の新規インポート", account_get_path %></p>
+
+<div class="container">
+	<div class="raw">
+<table class="list table table-striped table-hover">
+	<tr>
+		<th>No</th>
+		<th>氏名</th>
+		<th>日経ID</th>
+		<th>興味</th>
+	</tr>
+
+	<% @accounts.each do |account| %>
+		<tr>
+			<td><%= account.id %></td>
+			<td><%= account.Name %></td>
+			<td><%= account.Nikkei_ID %></td>
+			<td><%= account.Interest %></td>
+			
+		</tr>
+	<% end %>
+</table>
+</div>
+</div>

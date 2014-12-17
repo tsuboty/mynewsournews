@@ -1,0 +1,106 @@
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+<div class="metro" >
+	<div class="container">
+
+
+		<header  width="80px" >
+
+			<% if current_account %>
+			<div style="float:right; margin-right:40px;">
+				<%= image_tag current_account.image ,class: "img-circle"%>
+
+			</div>
+			<% end %>
+
+			<%= render "account_login_form" %>
+			<h1>News Pickup</h1>
+
+		</header>
+
+		<p>
+		<!-- レコメンド -->
+		<% if session[:account] %>
+			<%= session[:account] %> さんにおすすめの記事が本日<font color="red"><u><%= rand(10..20).to_i %>件</u></font>届いてます。
+		<% elsif current_account %>
+			<%= current_account.Name %> さんにおすすめの記事が本日<font color="red"><u><%= rand(10..20).to_i %>件</u></font>届いてます。
+
+		<% end %>
+
+		</p>
+
+		<div class="grid">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-10">
+
+					<% @nokonoko = "nokonoko"%>
+					<% doubleSet = "tile double"%>
+
+					<!-- カテゴリ毎の小さなパネル (本来はオブジェクトで持つべき)-->
+
+					<%= render partial: "metro/tile",locals: {badge: @economy,title: "経済",color: "bg-violet",icon: "icon-newspaper",category:"ECONOMY",classSet: "tile"} %>
+
+					<%= render partial: "metro/tile",locals: {badge: @world,title: "国際",color: "bg-olive",icon: "icon-earth",category:"WORLD",classSet: "tile"}  %>
+
+					<%= render partial: "metro/tile",locals: {badge: @company,title: "企業",color: "bg-cyan",icon: "icon-basket",category:"COMPANY",classSet: "tile"} %>
+
+					<%= render partial: "metro/tile",locals: {badge: @politics,title: "政治",color: "bg-yellow",icon: "icon-user-3",category:"POLITICS",classSet: "tile"}  %>
+
+					<%= render partial: "metro/tile",locals: {badge: @markets,title: "マーケット",color: "bg-indigo",icon: "icon-stats-up",category:"MARKETS",classSet: "tile"}  %>
+
+					<%= render partial: "metro/tile",locals: {badge: @sports,title: "スポーツ",color: "bg-teal",icon: "icon-support",category:"SPORTS",classSet: "tile"}  %>
+
+					<%= render partial: "metro/tile",locals: {badge: @national,title: "国内",color: "bg-lightGreen",icon: "icon-home",category:"NATIONAL",classSet: "tile"} %>
+
+					<%= render partial: "metro/tile",locals: {badge: @finance,title: "金融",color: "bg-mauve",icon: "icon-diamond",category:"FINANCE",classSet: "tile"}  %>
+
+					<%= render partial: "metro/tile",locals: {badge: @local,title: "地域",color: "bg-darkMagenta",icon: "icon-accessibility",category:"LOCAL",classSet: "tile"} %>
+
+					<%= render partial: "metro/tile",locals: {badge: @favorite,title: "お気に入り",color: "bg-amber",icon: "icon-star",category:"FAVORITE",classSet: "tile"} %>
+
+
+
+
+
+
+				</div>
+
+				<% if session[:account] || current_account %>
+				<!-- 閲覧履歴グラフ -->
+				<div class="hidden-xs hidden-sm hidden-md col-lg-2" style="margin-left:-40px;">
+					<p align="center">今月の閲覧記事数</p>
+					<svg id="chart" width="160px" height="160px"></svg>
+				</div>
+				<script>
+					setPie();
+				</script>
+				<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			</div><!-- row -->
+		</div> <!-- grid -->
+
+
+
+
+
+
+
+	</div><!-- container -->
+
+
+
+</div>

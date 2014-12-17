@@ -1,0 +1,15 @@
+<div class="container">
+	<form action="/lounge/<%= @community.id %>/update" method="POST" role="form">
+		<legend>Form title</legend>
+	
+		<div class="form-group">
+			<label for="">id</label>
+			<input type="text" class="form-control" name="id" placeholder="Input field" value="<%= @community.id%>">
+			<label for="">名前</label>
+			<input type="text" class="form-control" name="body" placeholder="Input field" value="<%= @community.body %>">
+
+		</div>
+		<button type="submit" class="btn btn-primary btn-xs btn-w">更新</button>
+	</form>
+
+</div>

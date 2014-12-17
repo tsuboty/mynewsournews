@@ -1,0 +1,71 @@
+
+
+<div class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <p>One fine body&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- Button trigger modal -->
+<div>
+  <button class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">
+    <% if current_account %>
+              <%= current_account.Name %> 
+    <% else %>
+              サインイン
+    <% end %>
+    
+  </button>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="text-center login-title">
+          <% if current_account %>
+              Salesforceにサインイン中 </h1>
+          <% else %>
+              Salesforceでサインインする </h1>
+          <% end %>
+
+              <div class="account-wall">
+                  
+                  <!-- 画像 -->
+                  <% if current_account %>
+                    <%= image_tag(session[:img],class: "profile-img",align: "center") %>
+                  <% else %>
+                    <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120" alt="" align="center">
+                  <% end %>
+  
+                  <form class="form-signin">
+                   
+                    <!-- salesforce -->
+                      <div class="salesforce">
+                        <%= render "layouts/salesforce_login" %>
+                      </div>
+                   
+                    
+                    <a href="#" class="need-help">Need help? </a><span class="clearfix"></span>
+                  </form>
+              </div>
+              <a href="#" class="text-center new-account">Sign in with a different account</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,95 @@
+<div class="metro" >
+  <div class="container">
+
+
+    <header  width="80px" >
+
+      <% if current_account %>
+      <div style="float:right; margin-right:40px;">
+        <%= image_tag current_account.image ,class: "img-circle", size: '50x50' %>
+
+      </div>
+      <% end %>
+
+      <!-- ログインボタン -->
+      <%= render "account_login_form" %>
+      <h1>News Pickup</h1>
+
+    </header>
+
+    <p>
+      <!-- レコメンド -->
+      <% if session[:account] %>
+      <%= session[:account] %> さんにおすすめの記事が本日<font color="red"><u><%= rand(10..20).to_i %>件</u></font>届いてます。
+      <% elsif current_account %>
+      <%= current_account.Name %> さんにおすすめの記事が本日<font color="red"><u><%= rand(10..20).to_i %>件</u></font>届いてます。
+
+      <% end %>
+
+    </p>
+
+      <div class="row" style="height:300px;">
+        <div class="col-sm-6 col-md-6 box">
+          <a href="/metro/article_index">
+          <div class="front_tile" style="background-image:url(<%= asset_path "newspaper.jpg" %>)">
+            <div class="text_title">
+                <span style="color:white;background-color:black;opacity:0.7;border-radius:30px;">
+
+                  記事を
+                    <i class="icon-book on-right on-left"
+                    style="background: #CF5C60;
+                    color: white;
+                    padding: 10px;
+                    border-radius: 50%">
+                    </i>
+                  読む。
+
+              </span>
+
+            </div>
+          </div>
+        </a>
+        </div>
+
+
+        <div class="col-sm-6 col-md-6 box">
+          <a href="/lounge">
+          <div class="front_tile read_community">
+            <div class="text_title">
+
+                <span style="color:white;background-color:black;opacity:0.7;border-radius:30px;">
+                記事で<i class="icon-comments-2 on-right on-left"
+                style="background: #CF5C60;
+                color: white;
+                padding: 10px;
+                border-radius: 50%;
+                ">
+              </i>議論。
+              </span>
+
+            </div>
+          </div>
+        </a>
+        </div>
+
+
+        <% if session[:account] || current_account %>
+        <!-- 閲覧履歴グラフ -->
+        <div class="hidden-xs hidden-sm hidden-md col-lg-2" style="margin-left:-40px;">
+          <p align="center">今月の閲覧記事数</p>
+          <svg id="chart" width="160px" height="160px"></svg>
+        </div>
+        <script>
+          setPie();
+        </script>
+        <% end %>
+
+
+
+      </div><!-- row -->
+
+  </div><!-- container -->
+
+
+
+</div>

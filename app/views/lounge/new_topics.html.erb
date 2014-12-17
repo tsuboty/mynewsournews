@@ -1,0 +1,15 @@
+<%= form_for @articles_communities,:url =>{:action => :create_topics} do |f| %>
+ 
+	<div class="field">
+		<%= f.label :article_id %><br />
+		<%= f.text_field :article_id %>
+	</div>
+
+	<br />
+	<%= f.hidden_field :community_id, :value => @community_id %>
+
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+<% end %>
+

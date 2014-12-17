@@ -1,0 +1,14 @@
+<%= link_to "lounge"+link  do %>
+		<div class= "tile " >
+			<div class="tile-content <%= color %> icon" >
+				<i class=<%= icon %>   ></i>
+				<!-- バッチの数字 -->
+				<div class="badge alert-warning">		
+					<%= badge %>		
+				</div>				
+			</div>	
+			<div class="brand bg-dark opacity">
+				<span class="text"><%= title %></span>
+			</div>	
+		</div>
+<% end %>
